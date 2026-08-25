@@ -1,77 +1,511 @@
- <!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PALABRAS DE APOYO - germanarias.com</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Germán A. Arias | Ideas & Microfiction</title>
+
+  <meta name="description"
+        content="Germán A. Arias writes about economics, philosophy, human nature and microfiction in English and Spanish.">
+
   <style>
+    :root {
+      --background: #f5f1e8;
+      --paper: #fbf8f2;
+      --text: #20201e;
+      --muted: #6d6a63;
+      --line: #d7d0c3;
+      --accent: #7b3f2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Georgia, serif;
-      margin: 40px;
-      background-color: #faf9f6;
-      color: #222;
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
     }
-    img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 10px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    h1 {
-      text-align: center;
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      letter-spacing: .16em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      font-size: .82rem;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      font-size: 1.8em;
-      margin-bottom: 0.2em;
     }
-    .section {
-      margin-top: 40px;
+
+    .language {
+      color: var(--accent);
+      font-weight: bold;
     }
-    .section h2 {
-      font-size: 1.2em;
-      margin-bottom: 0.5em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 4px;
+
+    /* HERO */
+
+    .hero {
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .76rem;
+      color: var(--accent);
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      line-height: .95;
+      letter-spacing: -.04em;
+      margin: 0 0 35px;
+      font-weight: normal;
+    }
+
+    .hero-text {
+      max-width: 720px;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      line-height: 1.35;
+      color: #3d3b37;
+      margin-bottom: 35px;
+    }
+
+    .topics {
+      font-family: Arial, sans-serif;
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 45px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 21px;
+      border: 1px solid var(--text);
+      font-family: Arial, sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .button:hover {
+      background: var(--text);
+      color: var(--paper);
+    }
+
+    .button.primary {
+      background: var(--text);
+      color: var(--paper);
+    }
+
+    .button.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-family: Arial, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      font-weight: normal;
+      line-height: 1.05;
+      margin: 0 0 35px;
+    }
+
+    .intro {
+      max-width: 720px;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 55px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 35px;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-category {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--accent);
+      font-size: .7rem;
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      line-height: 1.15;
+      font-weight: normal;
+      margin: 25px 0 15px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .read-more {
+      margin-top: 30px;
+      font-family: Arial, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* TWO COLUMNS */
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .large-copy {
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
+      line-height: 1.3;
+    }
+
+    /* ABOUT */
+
+    .about-copy {
+      max-width: 760px;
+      font-size: 1.25rem;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      font-family: Arial, sans-serif;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .social {
+      display: flex;
+      gap: 22px;
+    }
+
+    .social a:hover {
+      color: var(--accent);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links a:not(.language) {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0;
+      }
+
+      .cards,
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .two-columns {
+        gap: 35px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <h1>PALABRAS DE APOYO</h1>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#">GERMÁN A. ARIAS</a>
 
-  <img src="https://i.imgur.com/XXIq04J.jpeg" alt="Ilustración de Palabras de Apoyo" />
+      <div class="nav-links">
+        <a href="#ideas">Ideas</a>
+        <a href="#microfiction">Microfiction</a>
+        <a href="#about">About</a>
+        <a class="language" href="#">EN / ES</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <p>
-    Dos mejores amigos visitaron al mismo médico, preocupados por síntomas similares.
-    Ambos se sometieron a las mismas pruebas de laboratorio.
-    Los resultados, trocados, diagnosticaban un tumor maligno en fase terminal a uno, y uno benigno al otro.
-    Pasaron la noche compartiendo palabras de consuelo, resignación y afecto.
-    Al día siguiente, cuando se corrigió el error, también se invirtieron sus palabras y sus angustias.
-  </p>
 
-  <div class="section">
-    <h2>Análisis literario</h2>
-    <p>
-      El microcuento juega con el poder del lenguaje y su contexto emocional. Las palabras, inicialmente ofrecidas como consuelo, pierden su fuerza cuando cambian los roles. La estructura narrativa es circular, con una inversión final que deja al lector reflexionando sobre la relatividad de la empatía y la fragilidad de nuestras certezas. El título cobra fuerza retrospectivamente: no todas las palabras de apoyo son verdaderamente transferibles.
-    </p>
+<main>
+
+  <!-- HERO -->
+
+  <div class="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="eyebrow">Writer · Observer · Storyteller</div>
+
+        <h1>Ideas worth<br>thinking about.</h1>
+
+        <p class="hero-text">
+          Exploring the systems we build and the human nature behind them
+          through economics, philosophy, observation and fiction.
+        </p>
+
+        <div class="topics">
+          Economics · Philosophy · Human Nature · Microfiction
+        </div>
+
+        <div class="buttons">
+          <a class="button primary" href="#ideas">Explore Ideas</a>
+          <a class="button" href="#microfiction">Read Microfiction</a>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <div class="section">
-    <h2>Análisis filosófico</h2>
-    <p>
-      Desde una perspectiva existencial, el relato muestra cómo el ser humano lidia con la muerte cuando esta parece inminente. La inversión de roles resalta la imposibilidad de “consolar desde fuera” de la experiencia. Hay un eco de Nietzsche: quien no ha descendido al infierno no puede hablar con propiedad del sufrimiento. La autenticidad de las palabras solo puede medirse cuando se vive el mismo dolor.
-    </p>
-  </div>
 
-  <div class="section">
-    <h2>Resumen</h2>
-    <p>
-      Un error médico invierte las noticias sobre la salud de dos amigos, revelando cómo las palabras de apoyo pierden su fuerza cuando el sufrimiento cambia de lugar.
-    </p>
+  <!-- IDEAS -->
+
+  <section id="ideas">
+    <div class="container">
+
+      <div class="section-label">Ideas</div>
+
+      <div class="two-columns">
+
+        <h2>Understanding the world beyond the obvious.</h2>
+
+        <div>
+          <p class="large-copy">
+            Economics explains many of the systems around us.
+            Philosophy asks how we should live within them.
+            Human nature often explains what happens next.
+          </p>
+
+          <p class="intro">
+            Essays, observations and questions about economics, society,
+            philosophy, culture and human behavior.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MICROFICTION -->
+
+  <section id="microfiction">
+    <div class="container">
+
+      <div class="section-label">Microfiction</div>
+
+      <h2>Small stories.<br>Large questions.</h2>
+
+      <p class="intro">
+        Stories measured in sentences rather than pages—built around an idea,
+        a contradiction, a moment of realization or an unexpected ending.
+      </p>
+
+      <div class="cards">
+
+        <article class="card">
+          <div>
+            <div class="card-category">Microfiction</div>
+            <h3>Window of Life</h3>
+            <p>
+              Sometimes the most terrifying moment is not the end,
+              but knowing that it is coming.
+            </p>
+          </div>
+          <div class="read-more">Read story →</div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="card-category">Microfiction</div>
+            <h3>Ephemeral Freedom</h3>
+            <p>
+              A brief meditation on freedom, danger and the price
+              of seeing the world beyond our boundaries.
+            </p>
+          </div>
+          <div class="read-more">Read story →</div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="card-category">Coming next</div>
+            <h3>More Narrative Flashes</h3>
+            <p>
+              Short fiction in English and Spanish about life, death,
+              freedom, contradiction and human nature.
+            </p>
+          </div>
+          <div class="read-more">Explore →</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="container">
+
+      <div class="section-label">About</div>
+
+      <h2>Germán A. Arias</h2>
+
+      <div class="about-copy">
+        <p>
+          I write about economics, philosophy, human nature and the
+          contradictions hidden in ordinary life.
+        </p>
+
+        <p>
+          My nonfiction approaches those questions through ideas and
+          observation. My microfiction explores many of the same questions
+          through stories.
+        </p>
+
+        <p>
+          I write in English and Spanish.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container footer-content">
+
+    <div>
+      © 2026 Germán A. Arias
+    </div>
+
+    <div class="social">
+      <a href="https://x.com/G_AriasWrites"
+         target="_blank"
+         rel="noopener noreferrer">X</a>
+
+      <a href="#microfiction">Writing</a>
+      <a href="#about">About</a>
+    </div>
+
   </div>
+</footer>
 
 </body>
 </html>
