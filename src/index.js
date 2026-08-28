@@ -46,6 +46,14 @@ async function readJson(request) {
   return request.json();
 }
 
+async function ensureSchema(env) {
+  await env.DB.batch([
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS story_views (story TEXT PRIMARY KEY, views INTEGER NOT NULL DEFAULT 0, updated_at INTEGER NOT NULL DEFAULT (unixepoch()))"),
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY AUTOINCREMENT, story TEXT NOT NULL, name TEXT NOT NULL, message TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved')), created_at INTEGER NOT NULL DEFAULT (unixepoch()))"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS comments_story_status_created_idx ON comments (story, status, created_at)")
+  ]);
+}
+
 async function handleApi(request, env, url) {
   if (request.method === "POST" && url.pathname === "/api/views") {
     if (!sameOrigin(request)) return json({ error: "Invalid origin" }, 403);
@@ -112,7 +120,10 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
-      if (url.pathname.startsWith("/api/")) return await handleApi(request, env, url);
+      if (url.pathname.startsWith("/api/")) {
+        await ensureSchema(env);
+        return await handleApi(request, env, url);
+      }
       return env.ASSETS.fetch(request);
     } catch (error) {
       console.error(JSON.stringify({ event: "request_error", path: url.pathname, message: String(error?.message || error) }));
