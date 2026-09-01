@@ -46,6 +46,14 @@
   const currentIndex = storyOrder.indexOf(slug);
   const story = document.querySelector('.story');
 
+  if (!spanish && story) {
+    const audioElement = document.querySelector('audio');
+    if (audioElement && !story.contains(audioElement)) {
+      const audioBlock = audioElement.closest('.audio-wrap') || audioElement;
+      if (audioBlock !== story.previousElementSibling) story.before(audioBlock);
+    }
+  }
+
   if (story && currentIndex !== -1) {
     const nextSlug = storyOrder[(currentIndex + 1) % storyOrder.length];
     const nextWrap = document.createElement('div');
