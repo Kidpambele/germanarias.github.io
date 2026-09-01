@@ -2,6 +2,72 @@
   const slug = location.pathname.split('/').pop().replace(/\.html$/, '');
   if (!slug || slug === 'index' || slug === 'index-es' || slug === 'admin') return;
   const spanish = document.documentElement.lang === 'es';
+
+  const spanishOrder = [
+    'simulacro-de-muerte',
+    'diagnostico-pesimista',
+    'libertad-efimera',
+    'ventana-de-vida',
+    'limpieza-emocional',
+    'autoprogramacion',
+    'muerte-rebelde',
+    'el-reloj-rebelde',
+    'viaje-sin-retorno',
+    'un-error-oportuno',
+    'robo-de-identidad',
+    'amor-ideal',
+    'la-unica-mujer',
+    'descanse-en-paz',
+    'big-bang-salvador',
+    'la-hamaca-de-mis-suenos',
+    'falsos-positivos'
+  ];
+
+  const englishOrder = [
+    'death-rehearsal',
+    'a-pessimistic-diagnosis',
+    'ephemeral-freedom',
+    'window-of-life',
+    'emotional-cleansing',
+    'self-scheduling',
+    'rebellious-death',
+    'the-rebellious-clock',
+    'journey-of-no-return',
+    'a-fortunate-mistake',
+    'identity-theft',
+    'ideal-love',
+    'the-only-woman',
+    'rest-in-peace',
+    'redemptive-big-bang',
+    'the-hammock-of-my-dreams'
+  ];
+
+  const storyOrder = spanish ? spanishOrder : englishOrder;
+  const currentIndex = storyOrder.indexOf(slug);
+  const story = document.querySelector('.story');
+
+  if (story && currentIndex !== -1) {
+    const nextSlug = storyOrder[(currentIndex + 1) % storyOrder.length];
+    const nextWrap = document.createElement('div');
+    nextWrap.style.marginTop = '1.8em';
+    nextWrap.style.paddingTop = '1em';
+    nextWrap.style.borderTop = '1px solid var(--line, #d7d0c3)';
+    nextWrap.style.textAlign = 'right';
+
+    const nextLink = document.createElement('a');
+    nextLink.href = `${nextSlug}.html`;
+    nextLink.textContent = spanish ? 'Siguiente →' : 'Next →';
+    nextLink.style.fontFamily = 'Arial, sans-serif';
+    nextLink.style.fontSize = '.78rem';
+    nextLink.style.letterSpacing = '.12em';
+    nextLink.style.textTransform = 'uppercase';
+    nextLink.style.color = 'var(--accent, #7b3f2c)';
+    nextLink.style.fontWeight = 'bold';
+
+    nextWrap.append(nextLink);
+    story.append(nextWrap);
+  }
+
   const author = document.querySelector('.author');
   if (!author) return;
 
