@@ -55,25 +55,34 @@
   }
 
   if (story && currentIndex !== -1) {
+    const previousSlug = storyOrder[(currentIndex - 1 + storyOrder.length) % storyOrder.length];
     const nextSlug = storyOrder[(currentIndex + 1) % storyOrder.length];
-    const nextWrap = document.createElement('div');
-    nextWrap.style.marginTop = '1.8em';
-    nextWrap.style.paddingTop = '1em';
-    nextWrap.style.borderTop = '1px solid var(--line, #d7d0c3)';
-    nextWrap.style.textAlign = 'right';
+    const navWrap = document.createElement('div');
+    navWrap.style.marginTop = '1.8em';
+    navWrap.style.paddingTop = '1em';
+    navWrap.style.borderTop = '1px solid var(--line, #d7d0c3)';
+    navWrap.style.display = 'flex';
+    navWrap.style.justifyContent = 'space-between';
+    navWrap.style.alignItems = 'center';
+    navWrap.style.gap = '1em';
 
-    const nextLink = document.createElement('a');
-    nextLink.href = `${nextSlug}.html`;
-    nextLink.textContent = spanish ? 'Siguiente →' : 'Next →';
-    nextLink.style.fontFamily = 'Arial, sans-serif';
-    nextLink.style.fontSize = '.78rem';
-    nextLink.style.letterSpacing = '.12em';
-    nextLink.style.textTransform = 'uppercase';
-    nextLink.style.color = 'var(--accent, #7b3f2c)';
-    nextLink.style.fontWeight = 'bold';
+    const makeLink = (href, text) => {
+      const link = document.createElement('a');
+      link.href = `${href}.html`;
+      link.textContent = text;
+      link.style.fontFamily = 'Arial, sans-serif';
+      link.style.fontSize = '.78rem';
+      link.style.letterSpacing = '.12em';
+      link.style.textTransform = 'uppercase';
+      link.style.color = 'var(--accent, #7b3f2c)';
+      link.style.fontWeight = 'bold';
+      return link;
+    };
 
-    nextWrap.append(nextLink);
-    story.append(nextWrap);
+    const previousLink = makeLink(previousSlug, spanish ? '← Anterior' : '← Previous');
+    const nextLink = makeLink(nextSlug, spanish ? 'Siguiente →' : 'Next →');
+    navWrap.append(previousLink, nextLink);
+    story.append(navWrap);
   }
 
   const author = document.querySelector('.author');
