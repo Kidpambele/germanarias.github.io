@@ -20,7 +20,8 @@
     'descanse-en-paz',
     'big-bang-salvador',
     'la-hamaca-de-mis-suenos',
-    'falsos-positivos'
+    'falsos-positivos',
+    'pecado-alternativo'
   ];
 
   const englishOrder = [
@@ -39,7 +40,8 @@
     'the-only-woman',
     'rest-in-peace',
     'redemptive-big-bang',
-    'the-hammock-of-my-dreams'
+    'the-hammock-of-my-dreams',
+    'alternative-sin'
   ];
 
   const storyOrder = spanish ? spanishOrder : englishOrder;
