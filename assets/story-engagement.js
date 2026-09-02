@@ -44,6 +44,43 @@
     'alternative-sin'
   ];
 
+  const counterparts = {
+    'simulacro-de-muerte': 'death-rehearsal',
+    'death-rehearsal': 'simulacro-de-muerte',
+    'diagnostico-pesimista': 'a-pessimistic-diagnosis',
+    'a-pessimistic-diagnosis': 'diagnostico-pesimista',
+    'libertad-efimera': 'ephemeral-freedom',
+    'ephemeral-freedom': 'libertad-efimera',
+    'ventana-de-vida': 'window-of-life',
+    'window-of-life': 'ventana-de-vida',
+    'limpieza-emocional': 'emotional-cleansing',
+    'emotional-cleansing': 'limpieza-emocional',
+    'autoprogramacion': 'self-scheduling',
+    'self-scheduling': 'autoprogramacion',
+    'muerte-rebelde': 'rebellious-death',
+    'rebellious-death': 'muerte-rebelde',
+    'el-reloj-rebelde': 'the-rebellious-clock',
+    'the-rebellious-clock': 'el-reloj-rebelde',
+    'viaje-sin-retorno': 'journey-of-no-return',
+    'journey-of-no-return': 'viaje-sin-retorno',
+    'un-error-oportuno': 'a-fortunate-mistake',
+    'a-fortunate-mistake': 'un-error-oportuno',
+    'robo-de-identidad': 'identity-theft',
+    'identity-theft': 'robo-de-identidad',
+    'amor-ideal': 'ideal-love',
+    'ideal-love': 'amor-ideal',
+    'la-unica-mujer': 'the-only-woman',
+    'the-only-woman': 'la-unica-mujer',
+    'descanse-en-paz': 'rest-in-peace',
+    'rest-in-peace': 'descanse-en-paz',
+    'big-bang-salvador': 'redemptive-big-bang',
+    'redemptive-big-bang': 'big-bang-salvador',
+    'la-hamaca-de-mis-suenos': 'the-hammock-of-my-dreams',
+    'the-hammock-of-my-dreams': 'la-hamaca-de-mis-suenos',
+    'pecado-alternativo': 'alternative-sin',
+    'alternative-sin': 'pecado-alternativo'
+  };
+
   const storyOrder = spanish ? spanishOrder : englishOrder;
   const currentIndex = storyOrder.indexOf(slug);
   const story = document.querySelector('.story');
@@ -59,12 +96,13 @@
   if (story && currentIndex !== -1) {
     const previousSlug = storyOrder[(currentIndex - 1 + storyOrder.length) % storyOrder.length];
     const nextSlug = storyOrder[(currentIndex + 1) % storyOrder.length];
+    const counterpartSlug = counterparts[slug];
     const navWrap = document.createElement('div');
     navWrap.style.marginTop = '1.8em';
     navWrap.style.paddingTop = '1em';
     navWrap.style.borderTop = '1px solid var(--line, #d7d0c3)';
-    navWrap.style.display = 'flex';
-    navWrap.style.justifyContent = 'space-between';
+    navWrap.style.display = 'grid';
+    navWrap.style.gridTemplateColumns = '1fr auto 1fr';
     navWrap.style.alignItems = 'center';
     navWrap.style.gap = '1em';
 
@@ -82,8 +120,23 @@
     };
 
     const previousLink = makeLink(previousSlug, spanish ? '← Anterior' : '← Previous');
+    previousLink.style.justifySelf = 'start';
     const nextLink = makeLink(nextSlug, spanish ? 'Siguiente →' : 'Next →');
-    navWrap.append(previousLink, nextLink);
+    nextLink.style.justifySelf = 'end';
+    navWrap.append(previousLink);
+
+    if (counterpartSlug) {
+      const languageLink = makeLink(counterpartSlug, spanish ? 'Leer en inglés' : 'Read in Spanish');
+      languageLink.style.justifySelf = 'center';
+      languageLink.style.border = '1px solid var(--accent, #7b3f2c)';
+      languageLink.style.padding = '.55em .85em';
+      languageLink.style.whiteSpace = 'nowrap';
+      navWrap.append(languageLink);
+    } else {
+      navWrap.append(document.createElement('span'));
+    }
+
+    navWrap.append(nextLink);
     story.append(navWrap);
   }
 
