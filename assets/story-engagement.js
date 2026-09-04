@@ -4,7 +4,7 @@
   const spanish = document.documentElement.lang === 'es';
 
   const spanishOrder = [
-    'simulacro-de-muerte','diagnostico-pesimista','lento-pero-seguro','un-hombre-bueno','libertad-efimera','ventana-de-vida','limpieza-emocional','autoprogramacion','muerte-rebelde','el-reloj-rebelde','viaje-sin-retorno','un-error-oportuno','robo-de-identidad','amor-ideal','la-unica-mujer','descanse-en-paz','big-bang-salvador','la-hamaca-de-mis-suenos','falsos-positivos','pecado-alternativo'
+    'simulacro-de-muerte','diagnostico-pesimista','lento-pero-seguro','un-hombre-bueno','libertad-efimera','ventana-de-vida','limpieza-emocional','autoprogramacion','muerte-rebelde','el-reloj-rebelde','viaje-sin-retorno','un-error-oportuno','robo-de-identidad','amor-ideal','la-unica-mujer','descanse-en-paz','big-bang-salvador','la-hamaca-de-mis-suenos','pecado-alternativo'
   ];
 
   const englishOrder = [
