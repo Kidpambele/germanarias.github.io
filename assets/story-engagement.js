@@ -28,6 +28,14 @@
   }
 
   if (story && currentIndex !== -1) {
+    const mainTitle = document.querySelector('h1');
+    if (mainTitle && !document.querySelector('.story-repeat-title')) {
+      const repeatedTitle = document.createElement('h2');
+      repeatedTitle.className = 'story-repeat-title';
+      repeatedTitle.textContent = mainTitle.textContent.trim();
+      story.before(repeatedTitle);
+    }
+
     const previousSlug = storyOrder[(currentIndex - 1 + storyOrder.length) % storyOrder.length];
     const nextSlug = storyOrder[(currentIndex + 1) % storyOrder.length];
     const counterpartSlug = counterparts[slug];
